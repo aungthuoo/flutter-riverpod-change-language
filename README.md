@@ -1,5 +1,7 @@
 # Flutter Riverpod 2: Implementing a Language Switcher with Persistence
 
+![](./images/cover.png)
+
 In this guide, we’ll walk through how to implement a language switcher in a Flutter app using Riverpod 2 and shared_preferences. This allows your users to toggle between languages (e.g., English and Myanmar), and the selection persists even after the app restarts.
 
 ## What You'll Learn
@@ -25,6 +27,16 @@ dependencies:
   .
   .
 ```
+
+## the `flutter_gen` section should look like this:
+```yml
+flutter:
+  generate: true
+  uses-material-design: true 
+```
+
+
+
 
 ## Create the Locale Notifier
 ```dart
@@ -149,6 +161,37 @@ class HomePage extends ConsumerWidget {
 }
 
 ```
+## Check for `l10n.yaml` (optional, but recommended)
+create a `l10n.yaml` file in the `root directory` of your project 
+to control how localization files are generated:
+
+```yaml
+arb-dir: lib/l10n
+template-arb-file: app_en.arb
+output-localization-file: app_localizations.dart
+```
+
+## lib/l10n/app_en.arb
+```json
+{
+  "@@locale": "en",
+  "title": "Hello",
+  "welcome": "Welcome to our app"
+} 
+```
+
+
+## lib/l10n/app_en.arb
+```json
+{
+  "@@locale": "my",
+  "title": "မင်္ဂလာပါ",
+  "welcome": "ကျွန်ုပ်တို့၏အပ်ပလီကေးရှင်းမှကြိုဆိုပါသည်"
+}
+```
+
+
+-----------------
 
 ## Generate Localization Files
 ```bash
@@ -172,19 +215,20 @@ Example structure:
 }
 ```
 
-
-
-
 ## Final Result
 Users see a UI with language buttons.
 
 Tapping "မြန်မာ" changes the app language to Burmese.
 
 The app remembers the choice even after restart.
-
+-----------------
 ![](./images/img-001.png)
+-----------------
 ![](./images/img-002.png)
-
+-----------------
 
 ## Github link 
 [Source code](https://github.com/aungthuoo/flutter-riverpod-change-language)
+
+
+![](./images/banner.png)
